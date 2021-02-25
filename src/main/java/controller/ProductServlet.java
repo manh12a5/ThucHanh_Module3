@@ -124,6 +124,7 @@ public class ProductServlet extends HttpServlet {
     }
 
     private void editProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int id = Integer.parseInt(request.getParameter("id"));
         String name = request.getParameter("name");
         int price = Integer.parseInt(request.getParameter("price"));
         int amount = Integer.parseInt(request.getParameter("amount"));
@@ -131,7 +132,7 @@ public class ProductServlet extends HttpServlet {
         String image = request.getParameter("image");
         String description = request.getParameter("description");
         int category = Integer.parseInt(request.getParameter("category"));
-        Product product = new Product(name, price, amount, color, image, description, category);
+        Product product = new Product(id, name, price, amount, color, image, description, category);
         productService.edit(product);
         try {
             response.sendRedirect("/products");

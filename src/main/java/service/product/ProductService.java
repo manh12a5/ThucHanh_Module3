@@ -82,7 +82,7 @@ public class ProductService implements IProductService {
 
     @Override
     public void edit(Product product) {
-        String editSQL = "update product set nameProduct = ?, price = ?, amountProduct = ?, colorProduct = ?, image = ?, description = ?, categoty_id = ? where product_id = ?";
+        String editSQL = "update product set nameProduct = ?, price = ?, amountProduct = ?, colorProduct = ?, image = ?, description = ? where product_id = ?";
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(editSQL);
             preparedStatement.setString(1, product.getName());
@@ -91,8 +91,7 @@ public class ProductService implements IProductService {
             preparedStatement.setString(4, product.getColor());
             preparedStatement.setString(5, product.getImage());
             preparedStatement.setString(6, product.getDescription());
-            preparedStatement.setInt(7, product.getCategory());
-            preparedStatement.setInt(8, product.getId());
+            preparedStatement.setInt(7, product.getId());
             preparedStatement.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
